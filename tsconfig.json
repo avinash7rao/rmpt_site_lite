@@ -28,7 +28,13 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "components/_sections/PageSection.tsx",
+    "components/_sections/Hero.tsx",
+    "components/_molecules/NavLink.tsxx",
+    "components/_organisms/Section.tsx",
+    "components/_organisms/HeaderNav.tsx",
+    "components/_organisms/Footer.tsx"
   ],
   "exclude": ["node_modules"]
 }
