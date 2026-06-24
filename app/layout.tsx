@@ -30,7 +30,7 @@ export default function RootLayout({
           sx={{
             p: 2,
           }}>
-          <HeaderNav />
+          <HeaderNav menuItems={[]} />
           <Box
             component='main'
             sx={{
