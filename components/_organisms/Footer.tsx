@@ -1,13 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import { CopyRight } from "../_atoms/Icons/CopyRight";
-
-interface FooterProps {
-  footer?: {
-    items?: {
-      field_company_name?: string;
-      field_year?: string;
-    };
+interface FooterData {
+  items: {
+    field_company_name: string;
+    field_year: number;
   };
+}
+interface FooterProps {
+  footer: FooterData;
 }
 
 export function Footer({ footer }: FooterProps) {
