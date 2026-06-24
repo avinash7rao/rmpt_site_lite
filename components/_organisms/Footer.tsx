@@ -2,11 +2,14 @@ import { Box, Typography } from "@mui/material";
 import { CopyRight } from "../_atoms/Icons/CopyRight";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import IconButton from "@mui/material/IconButton";
+import Image from "next/image";
 interface FooterData {
   items: {
     field_company_name: string;
     field_year: number;
     youtube_link: string;
+    patreon_link: string;
+    ko_fi_link: string;
   };
 }
 interface FooterProps {
@@ -24,10 +27,27 @@ export function Footer({ footer }: FooterProps) {
           gap: 1,
         }}>
         <IconButton
+          href={footer?.items?.patreon_link}
+          target='_blank'
+          rel='noopener noreferrer'>
+          <Image
+            src='/images/patreon.png'
+            alt='Patreon'
+            width={40}
+            height={40}
+          />
+        </IconButton>
+        <IconButton
           href={footer?.items?.youtube_link}
           target='_blank'
           rel='noopener noreferrer'>
           <YouTubeIcon sx={{ color: "common.white", fontSize: 40 }} />
+        </IconButton>
+        <IconButton
+          href={footer?.items?.ko_fi_link}
+          target='_blank'
+          rel='noopener noreferrer'>
+          <Image src='/images/ko-fi.png' alt='Ko-fi' width={40} height={40} />
         </IconButton>
       </Box>
       <Box
