@@ -5,7 +5,6 @@ import footerData from "../data/footerData";
 import { Footer } from "../components/_organisms/Footer";
 import { HeaderNav } from "../components/_organisms/HeaderNav";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -15,6 +14,9 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: "RMPT LLC",
   description: "Renshu Media Production & Technologies LLC",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
