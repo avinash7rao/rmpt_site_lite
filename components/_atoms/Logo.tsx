@@ -1,9 +1,15 @@
 import Link from "next/link";
 import Typography from "@mui/material/Typography";
 
-export function Logo({ className }: { className?: string }) {
+interface LogoProps {
+  className?: string;
+  fontSize?: string;
+  off?: boolean;
+}
+
+export function Logo({ className, fontSize, off }: LogoProps) {
   return (
-    <Link className='px-2' href='/' style={{ textDecoration: "none" }}>
+    <Link href='/' className='px-2' style={{ textDecoration: "none" }}>
       <Typography
         component='h2'
         className={className}
@@ -17,16 +23,16 @@ export function Logo({ className }: { className?: string }) {
         <Typography
           component='span'
           sx={{
-            fontSize: "2em",
+            fontSize: fontSize ? { fontSize } : "2em",
             color: "#ff0000",
             fontStyle: "italic",
             display: "inline-block",
             transform: "skewX(6deg)",
             filter: `
-              drop-shadow(0 0 1px #ff4d4d)
-              drop-shadow(0 0 14px #ff0000)
-              drop-shadow(0 0 28px #cc0000)
-              drop-shadow(0 0 40px rgba(255,0,0,0.6))
+              drop-shadow(0 0 0px #ff4d4d)
+              drop-shadow(0 0 8px #ff0000)
+              drop-shadow(0 0 12px #cc0000)
+              drop-shadow(0 0 16px rgba(255,0,0,0.6))
             `,
           }}>
           R
@@ -34,13 +40,13 @@ export function Logo({ className }: { className?: string }) {
         <Typography
           component='span'
           sx={{
-            fontSize: "2em",
+            fontSize: fontSize ? { fontSize } : "2em",
             color: "#ffffff",
             filter: `
-              drop-shadow(0 0 1px #ffffff)
-              drop-shadow(0 0 14px #e6e6e6)
-              drop-shadow(0 0 28px #cccccc)
-              drop-shadow(0 0 40px rgba(255,255,255,0.5))
+              drop-shadow(0 0 0px #ffffff)
+              drop-shadow(0 0 ${off ? "2px" : "8px"} #e6e6e6)
+              drop-shadow(0 0 ${off ? "4px" : "12px"} #cccccc)
+              drop-shadow(0 0 ${off ? "6px" : "16px"} rgba(255,255,255,0.5))
             `,
           }}>
           MPT

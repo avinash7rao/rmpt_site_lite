@@ -31,14 +31,9 @@ export default function RootLayout({
           sx={{
             p: 2,
             minHeight: "100vh",
+            py: 5,
           }}>
-          <Box
-            component='main'
-            sx={{
-              py: 5,
-            }}>
-            {children}
-          </Box>
+          {children}
         </Container>
         <Footer footer={footerData} />
       </body>

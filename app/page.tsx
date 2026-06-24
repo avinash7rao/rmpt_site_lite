@@ -1,12 +1,12 @@
-import Image from "next/image";
-import { Hero } from "@/components/_sections/Hero";
-import { PageSection } from "@/components/_sections/PageSection";
+import { Box } from "@mui/material";
+import Hero from "@/components/_pageContent/Hero";
+import WhoIs from "@/components/_pageContent/whoIs";
 
 export default function Home() {
   return (
-    <div className='flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black'>
-      {/* <Hero html={blockHtml("Site Hero")} />
-      <PageSection html={blockHtml("Psyber Magus Suspense")} /> */}
-    </div>
+    <Box>
+      <Hero />
+      <WhoIs />
+    </Box>
   );
 }

@@ -30,7 +30,7 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "components/_sections/PageSection.tsx",
-    "components/_sections/Hero.tsx",
+    "components/_pageContent/Hero.tsx",
     "components/_molecules/NavLink.tsxx",
     "components/_organisms/Section.tsx",
     "components/_organisms/HeaderNav.tsx",
