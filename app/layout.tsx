@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 import footerData from "../data/footerData";
 import { Footer } from "../components/_organisms/Footer";
+import { HeaderNav } from "../components/_organisms/HeaderNav";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const nunito = Nunito({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -26,12 +24,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>
-        <div className='max-w-screen-md p-6 mx-auto'>
-          {/* <HeaderNav menuItems={menuItemsRaw} /> */}
-          <main className='container py-10 mx-auto'>{children}</main>
+      <body className={nunito.className} style={{ margin: 0 }}>
+        <Container
+          maxWidth='md'
+          sx={{
+            p: 2,
+          }}>
+          <HeaderNav />
+          <Box
+            component='main'
+            sx={{
+              py: 5,
+            }}>
+            {children}
+          </Box>
           <Footer footer={footerData} />
-        </div>
+        </Container>
       </body>
     </html>
   );

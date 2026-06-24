@@ -32,7 +32,7 @@ body {
   padding: 0.625rem;                    
 
   @media (min-width: 768px) {
-    padding: 1.75rem;
+    padding: 1.25rem;
   }
 }
 
