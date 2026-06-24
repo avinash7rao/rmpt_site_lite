@@ -14,7 +14,14 @@ export default function Donation() {
       <Typography variant='h4' gutterBottom align='center'>
         Support Us
       </Typography>
-      <Typography variant='body1' gutterBottom align='center'>
+      <Typography
+        variant='body1'
+        gutterBottom
+        align='center'
+        sx={{
+          fontFamily: "monospace",
+          mb: 2,
+        }}>
         Your support helps us continue to create and share valuable content. You
         can support us through Patreon or Ko-fi.
       </Typography>

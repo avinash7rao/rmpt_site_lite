@@ -6,11 +6,15 @@ export default function Hero() {
   return (
     <PageSection>
       <Logo fontSize='5em' off={true} />
-      <Box sx={{display: 'flex', flexDirection: 'column', gap: 2}}>
-        <Typography sx={{fontSize: '1em'}}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Typography sx={{ fontSize: "1em", fontFamily: "monospace" }}>
           Welcome to the RMPT LLC!
         </Typography>
-        <Typography >
+        <Typography
+          sx={{
+            fontFamily: "monospace",
+            mb: 2,
+          }}>
           A place where you can express your creativity and explore the world of
           technology. Our mission is to foster a community of like-minded
           individuals who are passionate about making a difference.
