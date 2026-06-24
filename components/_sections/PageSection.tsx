@@ -1,9 +1,3 @@
-import Content from "./Content"
-
-export function PageSection({ html }: { html: string }) {
-  return (
-    <section>
-      <Content html={html} />
-    </section>
-  )
+export function PageSection({ children }: { children: React.ReactNode }) {
+  return <section>{children}</section>;
 }

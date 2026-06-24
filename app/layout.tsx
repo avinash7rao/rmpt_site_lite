@@ -25,12 +25,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={nunito.className} style={{ margin: 0 }}>
+        <HeaderNav menuItems={[]} />
         <Container
-          maxWidth='md'
+          maxWidth='lg'
           sx={{
             p: 2,
+            minHeight: "100vh",
           }}>
-          <HeaderNav menuItems={[]} />
           <Box
             component='main'
             sx={{
@@ -38,8 +39,8 @@ export default function RootLayout({
             }}>
             {children}
           </Box>
-          <Footer footer={footerData} />
         </Container>
+        <Footer footer={footerData} />
       </body>
     </html>
   );
