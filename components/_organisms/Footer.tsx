@@ -1,15 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, IconButton } from "@mui/material";
+import Image from "next/image";
 import { CopyRight } from "../_atoms/Icons/CopyRight";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import IconButton from "@mui/material/IconButton";
-import Image from "next/image";
 interface FooterData {
   items: {
     field_company_name: string;
     field_year: number;
-    youtube_link: string;
-    patreon_link: string;
-    ko_fi_link: string;
+    social_media_links: {
+      name: string;
+      link: string;
+      image: string;
+      icon: string;
+    }[];
   };
 }
 interface FooterProps {
@@ -19,6 +21,9 @@ interface FooterProps {
 export function Footer({ footer }: FooterProps) {
   return (
     <Box component='footer' sx={{ py: 2 }}>
+      <Typography gutterBottom align='center'>
+        Support Us
+      </Typography>
       <Box
         sx={{
           display: "flex",
@@ -26,33 +31,29 @@ export function Footer({ footer }: FooterProps) {
           alignItems: "center",
           gap: 1,
         }}>
-        <IconButton
-          href={footer?.items?.patreon_link}
-          target='_blank'
-          rel='noopener noreferrer'>
-          <Image
-            src='/images/patreon.png'
-            alt='Patreon'
-            width={40}
-            height={40}
-          />
-        </IconButton>
-        <IconButton
-          href={footer?.items?.youtube_link}
-          target='_blank'
-          rel='noopener noreferrer'>
-          <YouTubeIcon sx={{ color: "common.white", fontSize: 40 }} />
-        </IconButton>
-        <IconButton
-          href={footer?.items?.ko_fi_link}
-          target='_blank'
-          rel='noopener noreferrer'>
-          <Image src='/images/ko-fi.png' alt='Ko-fi' width={40} height={40} />
-        </IconButton>
+        {footer.items.social_media_links.map((social) => (
+          <IconButton
+            key={social.name}
+            component='a'
+            href={social.link}
+            target='_blank'
+            rel='noopener noreferrer'>
+            {social.name === "YouTube" ? (
+              <YouTubeIcon sx={{ fontSize: 40, color: "common.white" }} />
+            ) : (
+              <Image
+                src={social.image}
+                alt={social.name}
+                width={40}
+                height={40}
+              />
+            )}
+          </IconButton>
+        ))}
       </Box>
       <Box
         sx={{
-          mb: "auto",
+          mt: 1,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -64,7 +65,7 @@ export function Footer({ footer }: FooterProps) {
           sx={{
             color: "common.white",
           }}>
-          {footer?.items?.field_company_name} {footer?.items?.field_year}
+          {footer.items.field_company_name} {footer.items.field_year}
         </Typography>
       </Box>
     </Box>
