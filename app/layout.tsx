@@ -5,6 +5,7 @@ import footerData from "../data/footerData";
 import { Footer } from "../components/_organisms/Footer";
 import { HeaderNav } from "../components/_organisms/HeaderNav";
 import Container from "@mui/material/Container";
+import NavBarItems from "../data/NavBarItems";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={nunito.className} style={{ margin: 0 }}>
-        <HeaderNav menuItems={[]} />
+        <HeaderNav menuItems={NavBarItems} />
         <Container
           maxWidth='lg'
           sx={{
