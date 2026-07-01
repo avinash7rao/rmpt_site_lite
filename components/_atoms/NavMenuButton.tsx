@@ -5,11 +5,18 @@ interface NavMenuButtonProps {
   href: string;
   label: string;
   black?: boolean;
+  onClick?: () => void;
 }
 
-export default function NavMenuButton({ href, label, black }: NavMenuButtonProps) {
+export default function NavMenuButton({
+  href,
+  label,
+  black,
+  onClick,
+}: NavMenuButtonProps) {
   return (
     <Button
+      onClick={onClick}
       component={Link}
       href={href}
       variant='text'

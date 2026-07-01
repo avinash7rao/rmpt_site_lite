@@ -31,10 +31,10 @@ export default function NavMenuDropdown({
           minWidth: 220,
           zIndex: 1000,
         }}
-        spacing={1}
-      >
+        spacing={1}>
         {items.map((item) => (
           <MenuButton
+            onClick={onClose}
             key={item.itemName}
             href={item.link}
             label={item.itemName}
