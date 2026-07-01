@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
-import footerData from "../data/footerData";
+import {footerData} from "../data/footerData";
 import { Footer } from "../components/_organisms/Footer";
 import { HeaderNav } from "../components/_organisms/HeaderNav";
 import Container from "@mui/material/Container";
