@@ -3,20 +3,24 @@ import React, { useState } from "react";
 import Link from "next/link";
 import {
   AppBar,
+  Stack,
   Toolbar,
   IconButton,
-  Typography,
   Drawer,
   List,
-  ListItemButton,
   ListItemText,
   Collapse,
   Box,
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Logo } from "../_atoms/Logo";
+import NavMenuButton from "../_atoms/NavMenuButton";
+import NavMenuDropDownIconButton from "../_atoms/MenuDropDownIconButton";
+import NavMenuDropdown from "./NavMenuDropDown";
+import DefaultButton from "../_atoms/DefaultButton";
 
 type MenuItem = {
   itemName: string;
@@ -32,6 +36,9 @@ interface HeaderNavProps {
 export function HeaderNav({ menuItems }: HeaderNavProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [menuDropdownToggle, setMenuDropdownToggle] = useState<number | null>(
+    null,
+  );
 
   const toggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open);
@@ -39,6 +46,10 @@ export function HeaderNav({ menuItems }: HeaderNavProps) {
 
   const handleToggleSubmenu = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const handleMenuDropdownToggle = (index: number) => {
+    setMenuDropdownToggle((prev) => (prev === index ? null : index));
   };
 
   return (
@@ -60,130 +71,158 @@ export function HeaderNav({ menuItems }: HeaderNavProps) {
                 md: "flex",
               },
               alignItems: "center",
-              gap: 4,
+              gap: 2,
               mr: 2,
             }}>
-            {menuItems.map((item) => (
-              <Box
-                key={item.itemName}
-                sx={{
-                  position: "relative",
-                  "&:hover .submenu": {
-                    display: "block",
-                  },
-                }}>
-                <Typography
-                  component={Link}
-                  href={item.link}
-                  sx={{
-                    color: "white",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}>
-                  {item.itemName}
-                </Typography>
+            {menuItems.map((item, index) => {
+              const hasChildren = !!item.childItems?.length;
+              const isOpen = menuDropdownToggle === index;
 
-                {item.childItems && (
-                  <Box
-                    className='submenu'
-                    sx={{
-                      display: "none",
-                      position: "absolute",
-                      top: "100%",
-                      right: 0,
-                      left: "auto",
-                      bgcolor: "transparent important!",
-                      minWidth: 220,
-                      maxWidth: "90vw",
-                      boxShadow: 3,
-                      borderRadius: 1,
-                      overflow: "hidden",
-                      zIndex: 1000,
-                      gap: 2,
-                    }}>
-                    {item.childItems.map((child) => (
-                      <Typography
-                        key={child.itemName}
-                        component={Link}
-                        href={child.link}
-                        sx={{
-                          display: "block",
-                          px: 2,
-                          py: 1,
-                          color: "white",
-                          textDecoration: "none",
-                          "&:hover": {
-                            bgcolor: "action.hover",
-                          },
-                        }}>
-                        {child.itemName}
-                      </Typography>
-                    ))}
-                  </Box>
-                )}
-              </Box>
-            ))}
+              return (
+                <Box
+                  key={item.itemName}
+                  sx={{
+                    position: "relative",
+                    display: "flex",
+                    alignItems: "center",
+                  }}>
+                  <NavMenuButton href={item.link} label={item.itemName} />
+                  {hasChildren && (
+                    <NavMenuDropDownIconButton
+                      open={isOpen}
+                      onClick={() => handleMenuDropdownToggle(index)}>
+                      <ExpandMore />
+                    </NavMenuDropDownIconButton>
+                  )}
+                  {hasChildren && (
+                    <NavMenuDropdown
+                      menu
+                      open={isOpen}
+                      items={item.childItems!}
+                      onClose={() => setMenuDropdownToggle(null)}
+                    />
+                  )}
+                </Box>
+              );
+            })}
           </Box>
-          <Box sx={{ display: { xs: "block", md: "none" } }}>
-            <IconButton
-              size='large'
-              edge='start'
-              color='inherit'
-              aria-label='menu'
-              onClick={toggleDrawer(true)}>
-              <MenuIcon />
-            </IconButton>
-          </Box>
+          {!drawerOpen && (
+            <Box sx={{ display: { xs: "block", md: "none" } }}>
+              <IconButton
+                size='large'
+                edge='start'
+                color='inherit'
+                aria-label='menu'
+                onClick={toggleDrawer(true)}>
+                <MenuIcon />
+              </IconButton>
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
 
-      <Drawer anchor='right' open={drawerOpen} onClose={toggleDrawer(false)}>
+      <Drawer
+        anchor='right'
+        open={drawerOpen}
+        onClose={toggleDrawer(false)}
+        sx={{
+          "& .MuiDrawer-paper": {
+            backgroundColor: "transparent",
+            elevation: 0,
+            boxShadow: "none",
+          },
+        }}>
         <Box
-          sx={{ width: 300, backgroundColor: "transparent" }}
+          sx={{ width: 250, backgroundColor: "transparent", my: 3 }}
           role='presentation'
           color='inherit'>
-          <List sx={{ backgroundColor: "transparent" }}>
+          <Stack sx={{ backgroundColor: "transparent" }}>
             {menuItems?.map((item, index) => {
               const hasChildren = !!item.childItems?.length;
               const isOpen = openIndex === index;
               return (
                 <React.Fragment key={item.itemName}>
-                  <ListItemButton
-                    onClick={() => {
-                      if (hasChildren) {
-                        handleToggleSubmenu(index);
-                      } else {
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      width: "100%",
+                    }}>
+                    <Button
+                      component={Link}
+                      href={item.link}
+                      onClick={() => {
                         setDrawerOpen(false);
-                      }
-                    }}
-                    component={!hasChildren ? Link : "div"}
-                    href={!hasChildren ? item.link : undefined}>
-                    {item.icon && (
-                      <Box sx={{ mr: 2, display: "flex" }}>{item.icon}</Box>
-                    )}
-                    <ListItemText primary={item.itemName} />
-                    {hasChildren && (isOpen ? <ExpandLess /> : <ExpandMore />)}
-                  </ListItemButton>
+                      }}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "100%",
+                        textTransform: "none",
+                        border: "2px solid transparent",
+                        borderRadius: 2,
+                        px: 2,
+                        py: 1,
+                        mb: 1,
+                        fontSize: "1rem",
+                        bgcolor: "#000",
+                        color: "white",
+                        transition: "all 0.2s ease",
+
+                        "&:hover": {
+                          borderColor: "#f44336",
+                        },
+                      }}>
+                      <Box sx={{ display: "flex", alignItems: "center" }}>
+                        {item.icon && (
+                          <Box sx={{ mr: 2, display: "flex" }}>{item.icon}</Box>
+                        )}
+                        <ListItemText primary={item.itemName} />
+                      </Box>
+                      {hasChildren && (
+                        <Box
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleToggleSubmenu(index);
+                          }}
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            ml: 1,
+                            cursor: "pointer",
+                          }}>
+                          {isOpen ? <ExpandLess /> : <ExpandMore />}
+                        </Box>
+                      )}
+                    </Button>
+                  </Box>
                   {hasChildren && (
                     <Collapse in={isOpen} timeout='auto' unmountOnExit>
-                      <List component='div' disablePadding>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 1,
+                          pl: 4,
+                        }}>
                         {item.childItems!.map((child) => (
-                          <ListItemButton
+                          <DefaultButton
                             key={child.itemName}
-                            sx={{ pl: 4 }}
-                            component={Link}
                             href={child.link}
-                            onClick={() => setDrawerOpen(false)}>
-                            <ListItemText primary={child.itemName} />
-                          </ListItemButton>
+                            onClick={() => setDrawerOpen(false)}
+                            label={child.itemName}
+                          />
                         ))}
-                      </List>
+                      </Box>
                     </Collapse>
                   )}
                 </React.Fragment>
               );
             })}
-          </List>
+          </Stack>
         </Box>
       </Drawer>
     </>

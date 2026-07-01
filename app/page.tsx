@@ -4,7 +4,7 @@ import WhoIs from "@/components/_pageContent/whoIs";
 
 export default function Home() {
   return (
-    <Box>
+    <Box component='main'>
       <Hero />
       <WhoIs />
     </Box>
