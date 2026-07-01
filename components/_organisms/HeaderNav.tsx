@@ -7,7 +7,6 @@ import {
   Toolbar,
   IconButton,
   Drawer,
-  List,
   ListItemText,
   Collapse,
   Box,
