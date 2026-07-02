@@ -7,8 +7,8 @@ export default function Hero() {
     <PageSection>
       <Logo fontSize='5em' off={true} />
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <Typography sx={{ fontSize: "1em", fontFamily: "monospace" }}>
-          Welcome to the RMPT LLC!
+        <Typography sx={{ fontSize: "1.75em", fontFamily: "monospace" }}>
+          Live-stream Your Dreams!
         </Typography>
         <Typography
           sx={{
