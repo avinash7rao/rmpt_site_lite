@@ -165,6 +165,7 @@ export function HeaderNav({ menuItems }: HeaderNavProps) {
                         px: 2,
                         py: 1,
                         mb: 1,
+                        mr: 1,
                         fontSize: "1rem",
                         bgcolor: "#000",
                         color: "white",
