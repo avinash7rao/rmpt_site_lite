@@ -21,12 +21,12 @@ export const LegalSectionView: React.FC<Props> = ({ section }) => {
         gutterBottom>
         {section.id}. {section.title}
       </Typography>
-
       <Box>
         {section.blocks.map((block, idx) => (
           <ContentBlockView key={idx} block={block} />
         ))}
       </Box>
+      <hr />
     </Box>
   );
 };
