@@ -15,6 +15,10 @@ export const NavBarItems = [
         itemName: "Terms of Service",
         link: "/about-us/terms-of-service",
       },
+      {
+        itemName: "Contact Us",
+        link: "mailto:support@rmpt.org",
+      },
     ],
   },
 ];

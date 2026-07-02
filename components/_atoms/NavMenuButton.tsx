@@ -17,7 +17,7 @@ export default function NavMenuButton({
   return (
     <Button
       onClick={onClick}
-      component={Link}
+      component={href ? (href.startsWith("mailto:") ? "a" : Link) : "button"}
       href={href}
       variant='text'
       sx={{

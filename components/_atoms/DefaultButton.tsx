@@ -15,11 +15,9 @@ export default function DefaultButton({
   onClick,
   children,
 }: DefaultButtonProps) {
-  const Component = href ? Link : "button";
-
   return (
     <Button
-      component={Component}
+      component={href ? (href.startsWith("mailto:") ? "a" : Link) : "button"}
       href={href}
       onClick={onClick}
       fullWidth={false}
@@ -40,8 +38,7 @@ export default function DefaultButton({
         "&:hover": {
           borderColor: "#f44336",
         },
-      }}
-    >
+      }}>
       <span>{label}</span>
       {children}
     </Button>
