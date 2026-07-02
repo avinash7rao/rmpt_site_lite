@@ -2,6 +2,7 @@ import { Box, Typography, IconButton } from "@mui/material";
 import Image from "next/image";
 import { CopyRight } from "../_atoms/Icons/CopyRight";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import EmailIcon from "@mui/icons-material/Email";
 interface FooterData {
   items: {
     field_company_name: string;
@@ -22,7 +23,7 @@ export function Footer({ footer }: FooterProps) {
   return (
     <Box component='footer' sx={{ py: 2 }}>
       <Typography gutterBottom align='center'>
-        Support Us
+        Support Us | Subscribe | Contact
       </Typography>
       <Box
         sx={{
@@ -38,16 +39,27 @@ export function Footer({ footer }: FooterProps) {
             href={social.link}
             target='_blank'
             rel='noopener noreferrer'>
-            {social.name === "YouTube" ? (
-              <YouTubeIcon sx={{ fontSize: 40, color: "common.white" }} />
-            ) : (
-              <Image
-                src={social.image}
-                alt={social.name}
-                width={40}
-                height={40}
-              />
-            )}
+            {(() => {
+              switch (social.name) {
+                case "YouTube":
+                  return (
+                    <YouTubeIcon sx={{ fontSize: 40, color: "common.white" }} />
+                  );
+                case "Email":
+                  return (
+                    <EmailIcon sx={{ fontSize: 40, color: "common.white" }} />
+                  );
+                default:
+                  return (
+                    <Image
+                      src={social.image}
+                      alt={social.name}
+                      width={40}
+                      height={40}
+                    />
+                  );
+              }
+            })()}
           </IconButton>
         ))}
       </Box>

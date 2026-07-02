@@ -4,12 +4,6 @@ export const footerData = {
     field_year: 2026,
     social_media_links: [
       {
-        name: "YouTube",
-        link: "https://www.youtube.com/channel/UC-4tH4CCBTqdSuB3oqJnZNg",
-        image: "/images/youtube.png",
-        icon: "YouTubeIcon",
-      },
-      {
         name: "Patreon",
         link: "https://www.patreon.com/PsyberMagus",
         image: "/images/patreon.png",
@@ -20,6 +14,18 @@ export const footerData = {
         link: "https://ko-fi.com/psybermagus",
         image: "/images/ko-fi.png",
         icon: "/images/ko-fi.png",
+      },
+      {
+        name: "YouTube",
+        link: "https://www.youtube.com/channel/UC-4tH4CCBTqdSuB3oqJnZNg",
+        image: "/images/youtube.png",
+        icon: "YouTubeIcon",
+      },
+      {
+        name: "Email",
+        link: "mailto:support@rmpt.com",
+        image: "",
+        icon: "EmailIcon",
       },
     ],
   },
