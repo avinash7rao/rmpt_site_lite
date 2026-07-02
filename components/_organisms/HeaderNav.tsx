@@ -211,7 +211,10 @@ export function HeaderNav({ menuItems }: HeaderNavProps) {
                           <DefaultButton
                             key={child.itemName}
                             href={child.link}
-                            onClick={() => setDrawerOpen(false)}
+                            onClick={() => {
+                              setDrawerOpen(false);
+                              handleToggleSubmenu(index);
+                            }}
                             label={child.itemName}
                           />
                         ))}
