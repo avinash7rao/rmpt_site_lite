@@ -7,7 +7,7 @@ body {
   max-height: 100%;
   min-height: 100vh;           
   padding-top: 5rem; 
-  color: #ddd0d0;  
+  color: #ffffff;  
   background-image: linear-gradient(
     to bottom right,           
     #000000,                    
@@ -53,7 +53,7 @@ section {
 }
 
 p {
-  color: #999999;      
+  color: #ffffff;      
   font-size: 1rem;
 }
 

@@ -13,9 +13,8 @@ export const ContentBlockView: React.FC<{ block: ContentBlock }> = ({
     case "paragraph":
       return (
         <Typography
-          variant="body1"
-          sx={{ mb: 1.5, color: "text.primary", lineHeight: 1.7 }}
-        >
+          variant='body1'
+          sx={{ mb: 1.5, color: "white", lineHeight: 1.7 }}>
           {block.content}
         </Typography>
       );
