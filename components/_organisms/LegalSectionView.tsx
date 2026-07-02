@@ -14,8 +14,12 @@ interface Props {
 export const LegalSectionView: React.FC<Props> = ({ section }) => {
   return (
     <Box sx={{ mb: 5 }}>
-      <Typography variant="h5" component="h5" sx={{ fontWeight: 600 }} gutterBottom>
-        {section.title}
+      <Typography
+        variant='h5'
+        component='h5'
+        sx={{ fontWeight: 600 }}
+        gutterBottom>
+        {section.id}. {section.title}
       </Typography>
 
       <Box>
