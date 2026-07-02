@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { footerData } from "../data/footerData";
 import { Footer } from "../components/_organisms/Footer";
@@ -38,6 +39,7 @@ export default function RootLayout({
           }}>
           {children}
         </Container>
+        <Analytics />
         <Footer footer={footerData} />
       </body>
     </html>
